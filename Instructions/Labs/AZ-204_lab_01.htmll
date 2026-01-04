@@ -1,0 +1,765 @@
+<html lang="es-ES" dir="ltr"><head>
+    <meta name="viewport" content="width=device-width">
+    <title>Creating Azure Apps Service Web Apps (ES) / Compilación de una aplicación web en ofertas de plataforma como servicio de Azure</title>
+    <link rel="shortcut icon" href="https://labclient.labondemand.com/images/favicon-32x32.png">
+    <script async="" src="https://www.datadoghq-browser-agent.com/us3/v6/datadog-logs.js"></script><script src="/lib/jquery/jquery.min.js?v=T-aPohYXbm0fRYDpJLr-zJ9RmYTswGsahAoIsNiMld4"></script>
+    <script src="https://labclient.labondemand.com/lib/jquery-ui/jquery-ui.min.js?v=IcrMqOnrmPHzJwK0F2aF8vlBr1GrW8fPiMy1Q1obsIA"></script>
+    <script src="https://labclient.labondemand.com/lib/showdown/showdown.min.js?v=Xv2GdaFMmxJ8UQfyvLjKMufRg-JaOYWIGUO4DKWSG60"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css">
+    <script src="https://labclient.labondemand.com/js/yaml.min.js"></script>
+    <script src="https://labclient.labondemand.com/lib/jquery-timepicker/jquery.timepicker.min.js?v=gtAdirm-9PW76O10YNe0hGy_r_UaVx3i17l0WGW35ek"></script>
+    <link rel="stylesheet" type="text/css" href="https://labclient.labondemand.com/lib/jquery-timepicker/jquery.timepicker.css?v=9JzQYccTr6LGkOi9PX5IVLVyHOLGtsPRZOUbKh1cc9A">
+    <script src="https://labclient.labondemand.com/Script/LocalizeTo?path=/js/instructions-processor.js&amp;v=Mk8BWR1_9Kj7Wm4dQZ0b5tKoU_Ch70het62tEDu4jGY&amp;lang=es-ES" type="text/javascript"></script>
+    <script src="https://labclient.labondemand.com/js/string-functions.js?v=lZRBKFYYzuDMfDttyV0S0zxfMuH4iFUeaU6G-ASab-8"></script>
+    <script src="https://labclient.labondemand.com/Script/LocalizeTo?path=/js/instructions.js&amp;v=IeeVPKroRp7wT2X_aMTOw2ove1VrIaWTzds4NpOa9Jc&amp;lang=es-ES" type="text/javascript"></script>
+    <link href="https://labclient.labondemand.com/lib/jquery-ui/jquery-ui.css?v=3Qb-9rcgEQpHtYtg_GSOnRkn5HXxv3FyxwnlGphSEv0" rel="stylesheet">
+    <link href="https://labclient.labondemand.com/css/lab-client-layout-v2.css?v=I2rPfAbtus9FIce7YxWnyENvzMn6VzyXoPaXIqbugTo" rel="stylesheet" type="text/css">
+    <link id="themeStylesheet" href="https://labclient.labondemand.com/theme/styles-v2?themeId=0&amp;mode=light" rel="stylesheet" type="text/css">
+
+
+        <script src="https://labclient.labondemand.com/js/api/lab-client-api.js?v=a2v1SBbxn_iCIRSVVwrFSFqd7nTQFlW-ooGm-mbVDEk"></script>
+</head>
+<body class="instructions-client">
+    <div id="labClient" style="">
+        <div class="lab-client-header" role="banner">
+
+            <div class="header-left">
+                <div class="theme-logo"></div>
+                <div id="labName" class="lab-name" role="heading" aria-level="1">
+                    <span id="instanceName" title="Creating Azure Apps Service Web Apps (ES) / Compilación de una aplicación web en ofertas de plataforma como servicio de Azure">Creating Azure Apps Service Web Apps (ES) / Compilación de una aplicación web en ofertas de plataforma como servicio de Azure</span>
+                </div>
+            </div>
+
+                    <a href="#" id="exit" class="exit-button cancel-button icon-link" role="button" aria-label="Finalizar">Finalizar</a>
+                <div id="exitMenu" class="menu" role="menu" aria-label="Menú Salir" aria-haspopup="true" aria-expanded="false">
+                        <div id="exit" class="menu-item cancel-button icon-link" tabindex="0" role="menuitem" aria-label="Finalizar laboratorio">Finalizar laboratorio</div>
+                </div>
+        </div>
+
+        <div class="tab-headings primary-color-low-opacity-border" role="navigation">
+            <div id="tabHolder" class="tab-holder">
+                    <a tabindex="0" class="tabHeading tab-heading primary-color-border selected" aria-selected="true" role="tab" aria-label="Instrucciones" data-target="instructionsTab" data-id="0">Instrucciones</a>
+                    <a tabindex="0" class="tabHeading tab-heading primary-color-border " aria-selected="false" role="tab" aria-label="Recursos" data-target="resourcesTab" data-id="1">Recursos</a>
+            </div>
+            <div class="icon-holder">
+                <a tabindex="0" id="notificationsButton" data-target="notifications-menu" class="notifications-button modal-menu-button icon primary-color-icon " role="button" aria-label="Notificaciones" title="Notificaciones"></a>
+                    <a tabindex="0" data-target="help-menu" class="help-button modal-menu-button icon primary-color-icon" role="button" aria-label="Ayuda" title="Ayuda"></a>
+                <a tabindex="0" data-target="settings-menu" class="settings-button modal-menu-button icon primary-color-icon" role="button" aria-label="Configuración" title="Configuración"></a>
+            </div>
+        </div>
+
+        <div class="tabs" role="main">
+            <div id="instructionsTab" class="tab selected">
+                <div id="instructionsContent" class="tab-content withFooter instructions withTaskProgress withNavigation" aria-label="Instrucciones de laboratorio">
+                    <div class="zoomable" id="pages"><div class="page" id="page0"><include src="https://raw.githubusercontent.com/LODSContent/All-MOC/master/MOC/es/tap_alert.md" data-name=" "><blockquote class="alert">
+  <p>Microsoft ha implementado mayores requisitos de seguridad en las cuentas Microsoft para que requieran la Autenticación Multifactor (MFA). Para evitar que tenga que usar una aplicación de autenticación, Skillable ha implementado una actualización de nuestra solución Cloud Slice en este laboratorio, que ahora utiliza un token de Pase de Acceso Temporal (TAP).</p>
+  <p>Este token TAP reemplaza la contraseña y evita la necesidad de autenticarse mediante MFA. La contraseña se ha reemplazado por el token TAP proporcionado en las instrucciones de este laboratorio, y tanto la contraseña como el token TAP se pueden encontrar en la pestaña Recursos en cualquier momento.</p>
+</blockquote></include>
+<include src="https://raw.githubusercontent.com/LODSContent/All-MOC/master/MOC/es/MSLearningDisclaimer.md" data-name=""><p></p><details>
+  <summary style="font-size:16px"> <strong>Descargo de responsabilidad</strong> <em>Haga clic para mostrar u ocultar</em> </summary><p></p>
+<h1 id="aviso-legal">Aviso legal</h1>
+<p>Este contenido de laboratorio se presenta tal como fue diseñado por Microsoft y se ha adaptado a la plataforma de Skillable para su uso. Si se identifican problemas de laboratorio que no se refieren directamente a la plataforma de Skillable, comuníquese con su instructor para una escalada adecuada. </p></details><p></p></include>
+<include src="https://raw.githubusercontent.com/LODSContent/All-MOC/master/MOC/es/GenericLabSetup_WithDownloadFiles.md" data-name=""><h1 id="configuración-necesaria-para-el-laboratorio">Configuración necesaria para el laboratorio</h1>
+<h2 id="inicie-sesión-en-la-máquina-virtual-del-laboratorio">Inicie sesión en la máquina virtual del laboratorio</h2>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex0"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex0"><span></span></label>Hola Erik. Inicie sesión en <a href="#" class="selectMachineLink icon-link special-action-link" data-data="240445">SEA-DEV</a> Haga clic en <a href="#" class="ctrlAltDeleteLink icon-link special-action-link">Ctrl Alt Suprimir</a> para activar la secuencia Ctrl + Alt + Supr y abrir la página de inicio de sesión.</p>
+<blockquote class="knowledge">
+  <p>Cualquier enlace como el de arriba enviará Ctrl+Alt+Supr a la máquina seleccionada. Esto también se puede hacer en el menú <strong>Comandos</strong> (rayo) que aparece en la esquina superior izquierda de la pantalla.</p>
+</blockquote><div class="moreKnowledge"><a href="#" class="moreKnowledgeLink">Más...</a></div></li>
+<li class="task-list-item" id="taskIndex1"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex1"><span></span></label>Iniciar sesión como <span class="typeText" title="Teclee el texto" tabindex="0" role="button">Admin</span>  con la contraseña <span class="typeText" title="Teclee el texto" tabindex="0" role="button">Pa55w.rd</span>.</p></li>
+</ol>
+<h2 id="descargue-los-archivos-para-laboratorio">Descargue los archivos para laboratorio</h2>
+<div class="activity" data-alias="DownloadFromGit" data-index="0"><div><input type="button" class="evaluate primary" value="Descargar archivos de laboratorio en C: Drive"><span class="loading loadingAnimation-medium" style="display:none;"></span></div><div class="feedbackHolder" id="feedbackHolderDownloadFromGit" role="status"></div><div class="feedback positive"><div class="textResponse"><p>¡Éxito! Los archivos de laboratorio se han descargado en el directorio C:\Allfiles.</p></div></div></div>
+<blockquote class="note">
+  <p>Aparecerá el mensaje <strong>Correcto</strong> arriba una vez completado el proceso.</p>
+</blockquote>
+<p>Cuando haya recibido el mensaje <strong>Correcto</strong>, haga clic en <strong>Siguiente</strong> para ir al laboratorio.</p></include>
+<p></p></div><div class="page selected" id="page1">
+
+<include src="https://raw.githubusercontent.com/LODSContent/All-MOC/master/MOC/es/CloudSliceResourceGroup.md" data-name=""><blockquote class="knowledge collapsed">
+  <p>Todos los grupos de recursos necesarios en este laboratorio se han creado para usted durante la configuración del laboratorio. Puede ignorar los pasos que le pidan que cree un grupo de recursos. Use o seleccione un grupo de recursos prediseñado que tenga un nombre similar al que se le ha pedido crear. Si no existe ningún grupo de recursos con un nombre similar, use cualquier otro grupo de recursos prediseñado.</p>
+  <p>Para acceder a Azure, use las siguientes credenciales:</p>
+  <ul>
+  <li>Nombre de usuario: <span class="typeText" title="Teclee el texto" tabindex="0" role="button">LabUser-58035175@cloudslice.onmicrosoft.com</span></li>
+  <li>Contraseña: <span class="typeText" title="Teclee el texto" tabindex="0" role="button">qgY=#M9J</span></li>
+  </ul>
+  <p>Puede ver sus grupos de recursos disponibles en la pestaña Recursos de la parte superior.</p>
+</blockquote><div class="moreKnowledge"><a href="#" class="moreKnowledgeLink">Más...</a></div></include><p></p>
+<include src="https://raw.githubusercontent.com/LODSContent/All-MOC/master/MOC/es/ACP_Disclaimer.md" data-name=""><blockquote class="alert">
+  <p>Recursos de Azure, como nombres de máquinas virtuales, tamaños y ubicaciones, deben coincidir con lo especificado en estos pasos. Debido a la naturaleza de Cloud Slice, las implementaciones están limitadas al alcance definido en los pasos de instrucción. Si los recursos aprovisionados difieren de lo que se describe en las instrucciones, se recibirá una notificación de error que indicará que esto fue "prohibido por la política". Si cree que ha recibido esta notificación por error, envíe una solicitud de soporte para que nuestro equipo pueda investigar más a fondo.</p>
+</blockquote></include>
+<hr>
+<include src="https://raw.githubusercontent.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure.es-es/main/Instructions/Labs/AZ-204_lab_01.md" data-name=""><h1 id="laboratorionbsp01-compilación-de-una-aplicación-web-en-ofertas-de-plataforma-como-servicio-de-azure">Laboratorio&nbsp;01: Compilación de una aplicación web en ofertas de plataforma como servicio de Azure</h1>
+<h2 id="interfaz-de-usuario-de-microsoftnbspazure">Interfaz de usuario de Microsoft&nbsp;Azure</h2>
+<p>Dada la naturaleza dinámica de las herramientas en la nube de Microsoft, puede experimentar cambios en la interfaz de usuario de Azure que se producen después del desarrollo de este contenido de entrenamiento. Como resultado, es posible que las instrucciones y los pasos del laboratorio no se alineen correctamente.</p>
+<p>Microsoft actualiza este curso de entrenamiento cuando la comunidad nos alerta de los cambios necesarios. Sin embargo, las actualizaciones en la nube se producen con frecuencia, por lo que es posible que se produzcan cambios en la interfaz de usuario antes de que se actualice este contenido de entrenamiento. <strong>Si esto ocurre, adáptese a los cambios y, a continuación, trabaje con ellos en los laboratorios según sea necesario.</strong></p>
+<h2 id="instructions">Instructions</h2>
+<h3 id="antes-de-comenzar">Antes de comenzar</h3>
+<h4 id="inicio-de-sesión-al-entorno-de-laboratorio">Inicio de sesión al entorno de laboratorio</h4>
+<p>Inicie sesión en la máquina virtual (VM) de Windows&nbsp;11 con las credenciales siguientes:</p>
+<ul>
+<li>Nombre de usuario: <code class="prettyprint prettyprinted" tabindex="0" style=""><span class="typ">Admin</span></code></li>
+<li>Contraseña: <code class="prettyprint prettyprinted" tabindex="0" style=""><span class="typ">Pa55w</span><span class="pun">.</span><span class="pln">rd</span></code></li>
+</ul>
+<blockquote>
+  <p><strong>Nota</strong>: El instructor le proporcionará instrucciones para conectarse al entorno de laboratorio virtual.</p>
+</blockquote>
+<h4 id="revisión-de-las-aplicaciones-instaladas">Revisión de las aplicaciones instaladas</h4>
+<p>Busque la barra de tareas en el escritorio de Windows&nbsp;11. La barra de tareas contiene los iconos de las aplicaciones que usará en este laboratorio, entre los que se incluyen:</p>
+<ul>
+<li>Microsoft Edge</li>
+<li>Explorador de archivos</li>
+<li>Terminal</li>
+<li>Visual Studio Code</li>
+</ul>
+<h2 id="escenario-de-laboratorio">Escenario de laboratorio</h2>
+<p>En este laboratorio, explorará cómo crear una aplicación web en Azure mediante el modelo PaaS. Una vez creada la aplicación web, aprenderás a cargar los archivos de aplicación web existentes mediante la opción de implementación zip de Apache Kudu. A continuación, verá y probará la aplicación web recién implementada.</p>
+<p><em>Para ver este vídeo, haga clic con el botón derecho sobre este <strong><a class="icon-link external-link" href="https://www.youtube.com/embed/EiSEcU9qjfo" target="_blank" aria-label="(opens a new window)">vínculo de vídeo</a></strong> y seleccione "Abrir vínculo en una pestaña nueva o una ventana nueva".</em></p>
+<p>
+<img src="https://raw.githubusercontent.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure.es-es/main/Instructions/Labs/media/Lab01-Overview.png" alt="Decorativas"></p>
+<h2 id="diagrama-de-la-arquitectura">Diagrama de la arquitectura</h2>
+<p>
+<img src="https://raw.githubusercontent.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure.es-es/main/Instructions/Labs/./media/Lab01-Diagram.png" alt="Diagrama de arquitectura que muestra un usuario que compila una aplicación web en la oferta de plataforma como servicio de Azure."></p>
+<h3 id="ejercicionbsp1-compilación-de-una-api-de-back-end-mediante-azure-storage-y-la-característica-de-web-apps-de-azure-app-service">Ejercicio&nbsp;1: Compilación de una API de back-end mediante Azure Storage y la característica de Web Apps de Azure App Service</h3>
+<h4 id="tareanbsp1-apertura-de-azure-portal">Tarea&nbsp;1: Apertura de Azure Portal</h4>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex2"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex2"><span></span></label>En la barra de tareas, seleccione el icono de <strong>Microsoft&nbsp;Edge</strong>.</p></li>
+<li class="task-list-item" id="taskIndex3"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex3"><span></span></label>En la ventana del explorador, vaya a Azure Portal en <code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">https</span><span class="pun">:</span><span class="com">//portal.azure.com</span></code> y, a continuación, inicie sesión con la cuenta que va a usar para este laboratorio.</p>
+<blockquote>
+  <p><strong>Nota</strong>: Si es la primera vez que inicia sesión en Azure Portal, se le ofrecerá un paseo por el portal. Si prefiere omitir esta visita, seleccione <strong>Quizás más adelante</strong> para empezar a usar el portal.</p>
+</blockquote></li>
+</ol>
+<h4 id="tareanbsp2-creación-de-una-cuenta-de-almacenamiento">Tarea&nbsp;2: Creación de una cuenta de almacenamiento</h4>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex4"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex4"><span></span></label>En Azure Portal, use el cuadro de texto <strong>Buscar recursos, servicios y documentos</strong> para buscar <strong>Cuentas de almacenamiento</strong> y, a continuación, en la lista de resultados, seleccione <strong>Cuentas de almacenamiento</strong>.</p></li>
+<li class="task-list-item" id="taskIndex5"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex5"><span></span></label>En la hoja &nbsp;<strong>Cuentas de almacenamiento</strong>&nbsp;, seleccione <strong>+ Crear</strong>.</p></li>
+<li class="task-list-item" id="taskIndex6"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex6"><span></span></label>En la hoja &nbsp;<strong>Crear una cuenta de almacenamiento</strong>&nbsp;, en la pestaña <strong>Aspectos básicos</strong>, realice las acciones siguientes y seleccione <strong>Revisar y crear</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Configuración</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lista desplegable de <strong>Suscripción</strong></td>
+<td>Conserve los valores predeterminados</td>
+</tr>
+<tr>
+<td>Sección <strong>Grupo de recursos</strong></td>
+<td>Seleccione Existente <strong>ManagedPlatform-lod58035175</strong>..</td>
+</tr>
+<tr>
+<td>Cuadro de texto <strong>Nombre de la cuenta de almacenamiento</strong>&nbsp;</td>
+<td>Escribir <strong>imgstor58035175</strong></td>
+</tr>
+<tr>
+<td>Lista desplegable de <strong>región</strong></td>
+<td>Seleccione <strong>(EE.UU.) Este de EE.&nbsp;UU.</strong></td>
+</tr>
+<tr>
+<td><strong>Servicio principal</strong></td>
+<td>Sin cambios</td>
+</tr>
+<tr>
+<td>Sección <strong>Rendimiento</strong></td>
+<td>Seleccione la opción <strong>Estándar</strong></td>
+</tr>
+<tr>
+<td>Lista desplegable de <strong>Redundancia</strong></td>
+<td>Seleccione <strong>Almacenamiento con redundancia local (LRS)</strong>.</td>
+</tr>
+</tbody>
+</table>
+<p>En la captura de pantalla siguiente, se muestran los valores configurados en la pestaña <strong>Aspectos básicos</strong> de la hoja <strong>Crear una cuenta de almacenamiento</strong>.</p>
+<p>
+<img src="https://raw.githubusercontent.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure.es-es/main/Instructions/Labs/./media/l01_create_a_storage_account.png" alt="Hoja Crear una cuenta de almacenamiento"></p></li>
+<li class="task-list-item" id="taskIndex7"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex7"><span></span></label>En la pestaña <strong>Revisar y crear</strong>, revise las opciones que seleccionó durante los pasos anteriores.</p></li>
+<li class="task-list-item" id="taskIndex8"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex8"><span></span></label>Seleccione <strong>Crear</strong> para crear la cuenta de almacenamiento mediante la configuración especificada.</p>
+<blockquote>
+  <p><strong>Nota</strong>: Espere a que se complete la tarea de creación antes de continuar con este laboratorio.</p>
+</blockquote></li>
+<li class="task-list-item" id="taskIndex9"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex9"><span></span></label>En la hoja <strong>Información general</strong>, seleccione el botón <strong>Ir al recurso</strong> para ir a la hoja de la cuenta de almacenamiento recién creada.</p></li>
+<li class="task-list-item" id="taskIndex10"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex10"><span></span></label>En la hoja &nbsp;<strong>Cuenta de almacenamiento</strong>&nbsp;, en la sección &nbsp;<strong>Seguridad y redes</strong>&nbsp;, seleccione <strong>Claves de acceso</strong>.</p></li>
+<li class="task-list-item" id="taskIndex11"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex11"><span></span></label>En la hoja &nbsp;<strong>Claves de acceso</strong>&nbsp;, revise cualquiera de las <strong>Cadenas de conexión</strong> (mediante el botón <strong>Mostrar</strong>) y, a continuación, registre el valor de cualquiera de los cuadros <strong>Cadena de conexión</strong>&nbsp; en el Bloc de notas. Las <strong>Clave**s son claves de cifrado administradas por la plataforma y **no</strong> se usan para este laboratorio.</p>
+<blockquote>
+  <p><strong>Nota</strong>: No importa la cadena de conexión que elija. Son intercambiables.</p>
+</blockquote></li>
+<li class="task-list-item" id="taskIndex12"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex12"><span></span></label>Abra Bloc de notas y pegue el valor de la cadena de conexión copiada en Bloc de notas. Usará este valor más adelante en este laboratorio.</p></li>
+</ol>
+<h4 id="tareanbsp3-carga-de-un-blob-de-ejemplo">Tarea&nbsp;3: Carga de un blob de ejemplo</h4>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex13"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex13"><span></span></label>En la hoja <strong>Cuenta de almacenamiento</strong>, en la sección <strong>Almacenamiento de datos</strong>, seleccione el vínculo <strong>Contenedores</strong>.</p></li>
+<li class="task-list-item" id="taskIndex14"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex14"><span></span></label>En la hoja <strong>Contenedores</strong>, seleccione <strong>+ Contenedor</strong>.</p></li>
+<li class="task-list-item" id="taskIndex15"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex15"><span></span></label>En la ventana <strong>Nuevo contenedor</strong>, realice las siguientes acciones y, a continuación, seleccione <strong>Crear</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Configuración</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cuadro de texto de <strong>nombre</strong></td>
+<td>Escribir <strong>images</strong></td>
+</tr>
+</tbody>
+</table></li>
+<li class="task-list-item" id="taskIndex16"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex16"><span></span></label>En la hoja <strong>Contenedores</strong>, vaya al contenedor de <strong>imágenes</strong> recién creado.</p></li>
+<li class="task-list-item" id="taskIndex17"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex17"><span></span></label>En la hoja <strong>imágenes</strong>, seleccione <strong>Cargar</strong>.</p></li>
+<li class="task-list-item" id="taskIndex18"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex18"><span></span></label>En la ventana <strong>Cargar blob</strong>, realice las siguientes acciones:</p>
+<table>
+<thead>
+<tr>
+<th>Configuración</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sección <strong>Archivos</strong></td>
+<td>Seleccione <strong>Buscar archivos</strong> o use la característica de arrastrar y colocar.</td>
+</tr>
+<tr>
+<td>Ventana <strong>Explorador de archivos</strong></td>
+<td>Vaya a <strong>Allfiles C:\Allfiles\Labs\01\Starter\Images</strong>, seleccione el archivo <strong>grilledcheese.jpg</strong> y, a continuación, seleccione <strong>Abrir</strong>.</td>
+</tr>
+<tr>
+<td>Casilla <strong>Sobrescribir si ya hay archivos</strong></td>
+<td>Asegúrese de que la casilla está seleccionada y, a continuación, seleccione <strong>Cargar</strong>.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+  <p><strong>Nota</strong>: Espere a que se cargue el blob antes de continuar con este laboratorio.</p>
+</blockquote></li>
+</ol>
+<h4 id="tareanbsp4-creación-de-una-aplicación-web">Tarea&nbsp;4: Creación de una aplicación web</h4>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex19"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex19"><span></span></label>En el panel de navegación de Azure Portal, seleccione <strong>Crear un recurso</strong>.</p></li>
+<li class="task-list-item" id="taskIndex20"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex20"><span></span></label>En la hoja <strong>Crear un recurso</strong>, en el cuadro de texto <strong>Buscar Servicios y Marketplace</strong>, escriba <strong>Aplicación web</strong> y, a continuación, seleccione ENTRAR.</p></li>
+<li class="task-list-item" id="taskIndex21"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex21"><span></span></label>En la hoja de resultados de búsqueda de <strong>Marketplace</strong>, seleccione el resultado de <strong>Aplicación web</strong>.</p></li>
+<li class="task-list-item" id="taskIndex22"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex22"><span></span></label>En la hoja <strong>Aplicación web</strong>, haga clic en <strong>Crear</strong>.</p></li>
+<li class="task-list-item" id="taskIndex23"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex23"><span></span></label>En la hoja <strong>Crear aplicación web</strong>, en la pestaña <strong>Aspectos básicos</strong>, realiza las acciones siguientes y, después, selecciona la pestaña <strong>Supervisión y seguridad</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Configuración</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lista desplegable de <strong>Suscripción</strong></td>
+<td>Conserve los valores predeterminados</td>
+</tr>
+<tr>
+<td>Sección <strong>Grupo de recursos</strong></td>
+<td>Seleccionar <strong>ManagedPlatform-lod58035175</strong></td>
+</tr>
+<tr>
+<td>Cuadro de texto <strong>Nombre</strong>&nbsp;</td>
+<td>Escribir <strong>imgapi58035175</strong></td>
+</tr>
+<tr>
+<td><strong>Protección del nombre de host predeterminado único</strong></td>
+<td><strong>Deshabilitado</strong></td>
+</tr>
+<tr>
+<td>Sección <strong>Publicar</strong></td>
+<td>Seleccione <strong>Código</strong>.</td>
+</tr>
+<tr>
+<td>Lista desplegable de la <strong>pila en tiempo de ejecución</strong></td>
+<td>Seleccionar <strong>.NET&nbsp;8 (LTS)</strong></td>
+</tr>
+<tr>
+<td>Sección <strong>Sistema operativo</strong></td>
+<td>Seleccione <strong>Windows</strong></td>
+</tr>
+<tr>
+<td>Lista desplegable de <strong>Región</strong></td>
+<td>Seleccionar la región <strong>Este de EE.&nbsp;UU.</strong></td>
+</tr>
+<tr>
+<td>Sección <strong>Plan de Windows (Este de EE.&nbsp;UU.)</strong></td>
+<td>Seleccione <strong>Crear nuevo</strong>, escriba <strong>ManagedPlan</strong> en el cuadro de texto <strong>Nombre</strong> y seleccione <strong>Aceptar</strong>.</td>
+</tr>
+<tr>
+<td>Sección <strong>Plan de precios</strong></td>
+<td>Seleccione <strong>Estándar S1</strong>.</td>
+</tr>
+</tbody>
+</table>
+<p>En la captura de pantalla siguiente, se muestran los valores configurados en la hoja <strong>Crear aplicación web</strong>.</p>
+<p>
+<img src="https://raw.githubusercontent.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure.es-es/main/Instructions/Labs/./media/l01_create_a_web_app.png" alt="Hoja Crear aplicación web"></p></li>
+<li class="task-list-item" id="taskIndex24"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex24"><span></span></label>En la pestaña <strong>Supervisión y seguridad</strong>, en la sección <strong>Habilitar Application Insights</strong>, selecciona <strong>No</strong> y luego selecciona <strong>Revisar y crear</strong>.</p></li>
+<li class="task-list-item" id="taskIndex25"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex25"><span></span></label>En la pestaña <strong>Revisar y crear</strong>, revise las opciones que seleccionó durante los pasos anteriores.</p></li>
+<li class="task-list-item" id="taskIndex26"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex26"><span></span></label>Seleccione <strong>Crear</strong> para crear la aplicación web mediante la configuración especificada.</p>
+<blockquote>
+  <p><strong>Nota</strong>: Espere a que se cree la aplicación web antes de continuar con este laboratorio.</p>
+</blockquote></li>
+<li class="task-list-item" id="taskIndex27"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex27"><span></span></label>En la hoja <strong>Información general</strong>, seleccione el botón <strong>Ir al recurso</strong> para ir a la hoja de la aplicación web recién creada.</p></li>
+</ol>
+<h4 id="tareanbsp5-configuración-de-la-aplicación-web">Tarea&nbsp;5: Configuración de la aplicación web</h4>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex28"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex28"><span></span></label>En la hoja <strong>App&nbsp;Service</strong>, en la sección <strong>Configuración</strong>, seleccione el vínculo <strong>Variables de entorno</strong>.</p></li>
+<li class="task-list-item" id="taskIndex29"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex29"><span></span></label>En la pestaña <strong>Configuración de la aplicación</strong>, seleccione <strong>+ Agregar</strong>. Introduzca la siguiente información en el cuadro de diálogo emergente <strong>Agregar o editar configuración de la aplicación</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Configuración</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cuadro de texto de <strong>nombre</strong></td>
+<td>Introduzca <strong>StorageConnectionString</strong></td>
+</tr>
+<tr>
+<td>Cuadro de texto <strong>Valor</strong></td>
+<td>Pegue la cadena de conexión de almacenamiento que copió anteriormente en Bloc de notas.</td>
+</tr>
+<tr>
+<td>Casilla <strong>Configuración de la ranura de implementación</strong></td>
+<td>Conserve los valores predeterminados</td>
+</tr>
+</tbody>
+</table></li>
+<li class="task-list-item" id="taskIndex30"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex30"><span></span></label>Seleccione <strong>Aplicar</strong> para cerrar el cuadro de diálogo emergente y vuelva a la sección <strong>Configuración de la aplicación</strong>.</p></li>
+<li class="task-list-item" id="taskIndex31"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex31"><span></span></label>En la parte inferior de la sección <strong>Configuración de la aplicación</strong>, seleccione <strong>Aplicar</strong>.</p>
+<blockquote>
+  <p><strong>Nota:</strong> Es posible que reciba una advertencia de que su aplicación puede reiniciarse al actualizar la configuración de la aplicación. Seleccione <strong>Confirmar</strong>. Espere a que se guarde la configuración de la aplicación antes de continuar con el laboratorio.</p>
+</blockquote></li>
+<li class="task-list-item" id="taskIndex32"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex32"><span></span></label>Para obtener la dirección URL de App Service, vaya al vínculo <strong>Información general</strong>, copie el valor de la sección <strong>Dominio predeterminado</strong> y péguelo en el Bloc de notas. Anteponga <code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">https</span><span class="pun">:</span><span class="com">//</span></code> al nombre de dominio en el Bloc de notas. Usará este valor más adelante en este laboratorio.</p>
+<blockquote>
+  <p><strong>Nota</strong>: En este momento, el servidor web de esta dirección URL devolverá una página web de marcador de posición. Aún no ha implementado ningún código en la aplicación web. Implementará código en la aplicación web más adelante en este laboratorio.</p>
+</blockquote></li>
+</ol>
+<h4 id="tareanbsp6-implementación-de-una-aplicación-web-de-aspnet-en-web-apps">Tarea&nbsp;6: Implementación de una aplicación web de <code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">ASP</span><span class="pun">.</span><span class="pln">NET</span></code> en Web Apps</h4>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex33"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex33"><span></span></label>En la barra de herramientas, seleccione el icono <strong>Visual&nbsp;Studio Code</strong>.</p></li>
+<li class="task-list-item" id="taskIndex34"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex34"><span></span></label>En el menú <strong>Archivo</strong>, seleccione <strong>Abrir carpeta</strong>.</p></li>
+<li class="task-list-item" id="taskIndex35"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex35"><span></span></label>En la ventana <strong>Explorador de archivos</strong>, vaya a <strong>Allfiles C:\Allfiles\Labs\01\Starter\API</strong> y, a continuación, seleccione <strong>Seleccionar carpeta</strong>.</p>
+<blockquote>
+  <p><strong>Nota</strong>: Ignore los mensajes para agregar los recursos necesarios para compilar y depurar, así como para ejecutar el comando restore y solucionar las dependencias sin resolver.</p>
+</blockquote></li>
+<li class="task-list-item" id="taskIndex36"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex36"><span></span></label>En el panel &nbsp;<strong>Explorador</strong>&nbsp; de la ventana <strong>Visual&nbsp;Studio Code</strong>, expanda la carpeta &nbsp;<strong>Controladores</strong> y, a continuación, seleccione el archivo <strong>ImagesController.cs</strong> para abrir el archivo en el editor.</p></li>
+<li class="task-list-item" id="taskIndex37"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex37"><span></span></label>En el editor, en la clase <strong>ImagesController</strong> de la línea&nbsp;26, observe el método <strong>GetCloudBlobContainer</strong> y el código usado para recuperar un contenedor.</p></li>
+<li class="task-list-item" id="taskIndex38"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex38"><span></span></label>En la clase <strong>ImagesController</strong> de la línea&nbsp;36, observe el método <strong>Get</strong> y el código usado para recuperar todos los blobs de forma asincrónica del contenedor de <strong>imágenes</strong>.</p></li>
+<li class="task-list-item" id="taskIndex39"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex39"><span></span></label>En la clase <strong>ImagesController</strong> de la línea&nbsp;68, observa el método <strong>Post</strong> y el código usado para conservar una imagen cargada en Storage.</p></li>
+<li class="task-list-item" id="taskIndex40"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex40"><span></span></label>En la barra de tareas, seleccione el icono <strong>Terminal</strong>.</p></li>
+<li class="task-list-item" id="taskIndex41"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex41"><span></span></label>En el terminal abierto, escriba el siguiente comando y, a continuación, seleccione ENTRAR para iniciar sesión en la interfaz de la línea de comandos (CLI) de Azure:</p>
+<pre><div class="codeTitle"><span class="title"></span><span class="buttons"><span class="copy-code-block">Copiar</span></span></div><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">az login</span></code></pre></li>
+<li class="task-list-item" id="taskIndex42"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex42"><span></span></label>En la ventana del explorador <strong>Microsoft&nbsp;Edge</strong>, escriba la dirección de correo electrónico y la contraseña de su cuenta Microsoft y, a continuación, seleccione <strong>Iniciar sesión</strong>.</p></li>
+<li class="task-list-item" id="taskIndex43"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex43"><span></span></label>Vuelva a la ventana de <strong>Terminal</strong> abierta actualmente. Espere a que finalice el proceso de inicio de sesión.</p></li>
+<li class="task-list-item" id="taskIndex44"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex44"><span></span></label>En el terminal, escriba el siguiente comando y, a continuación, seleccione ENTRAR para enumerar todas las aplicaciones del grupo de recursos <strong>ManagedPlatform-lod58035175</strong>:</p>
+<pre><div class="codeTitle"><span class="title"></span><span class="buttons"><span class="copy-code-block">Copiar</span></span></div><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">az webapp list </span><span class="pun">--</span><span class="pln">resource</span><span class="pun">-</span><span class="kwd">group</span><span class="pln"> </span><span class="typ">ManagedPlatform</span><span class="pun">-</span><span class="pln">lod58035175</span></code></pre></li>
+<li class="task-list-item" id="taskIndex45"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex45"><span></span></label>Escriba el siguiente comando y, a continuación, seleccione ENTRAR para buscar las aplicaciones que tienen el prefijo <strong>imgapi*</strong> :</p>
+<pre><div class="codeTitle"><span class="title"></span><span class="buttons"><span class="copy-code-block">Copiar</span></span></div><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">az webapp list </span><span class="pun">--</span><span class="pln">resource</span><span class="pun">-</span><span class="kwd">group</span><span class="pln"> </span><span class="typ">ManagedPlatform</span><span class="pun">-</span><span class="pln">lod58035175 </span><span class="pun">--</span><span class="pln">query </span><span class="str">"[?starts_with(name, 'imgapi')]"</span></code></pre></li>
+<li class="task-list-item" id="taskIndex46"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex46"><span></span></label>Escriba el siguiente comando y, a continuación, seleccione ENTRAR para representar solo el nombre de la aplicación única que tiene el prefijo <strong>imgapi*</strong> :</p>
+<pre><div class="codeTitle"><span class="title"></span><span class="buttons"><span class="copy-code-block">Copiar</span></span></div><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">az webapp list </span><span class="pun">--</span><span class="pln">resource</span><span class="pun">-</span><span class="kwd">group</span><span class="pln"> </span><span class="typ">ManagedPlatform</span><span class="pun">-</span><span class="pln">lod58035175 </span><span class="pun">--</span><span class="pln">query </span><span class="str">"[?starts_with(name, 'imgapi')].{Name:name}"</span><span class="pln"> </span><span class="pun">--</span><span class="pln">output tsv</span></code></pre></li>
+<li class="task-list-item" id="taskIndex47"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex47"><span></span></label>Escriba el siguiente comando y, a continuación, seleccione ENTRAR para cambiar el directorio actual al directorio <strong>Allfiles C:\Allfiles\Labs\01\Starter\API</strong> que contiene los archivos de laboratorio:</p>
+<pre><div class="codeTitle"><span class="title"></span><span class="buttons"><span class="copy-code-block">Copiar</span></span></div><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">cd C</span><span class="pun">:</span><span class="pln">\Allfiles\Labs\0</span><span class="lit">1</span><span class="pln">\Starter\API\</span></code></pre></li>
+<li class="task-list-item" id="taskIndex48"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex48"><span></span></label>Escriba el siguiente comando y, a continuación, seleccione ENTRAR para implementar el archivo <strong>api.zip</strong> en la aplicación web que creó anteriormente en este laboratorio:</p>
+<pre><div class="codeTitle"><span class="title"></span><span class="buttons"><span class="copy-code-block">Copiar</span></span></div><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">az webapp deployment source config</span><span class="pun">-</span><span class="pln">zip </span><span class="pun">--</span><span class="pln">resource</span><span class="pun">-</span><span class="kwd">group</span><span class="pln"> </span><span class="typ">ManagedPlatform</span><span class="pun">-</span><span class="pln">lod58035175 </span><span class="pun">--</span><span class="pln">src api</span><span class="pun">.</span><span class="pln">zip </span><span class="pun">--</span><span class="pln">name </span><span class="pun">&lt;</span><span class="pln">name</span><span class="pun">-</span><span class="kwd">of</span><span class="pun">-</span><span class="pln">your</span><span class="pun">-</span><span class="pln">api</span><span class="pun">-</span><span class="pln">app</span><span class="pun">&gt;</span></code></pre>
+<blockquote>
+  <p><strong>Nota</strong>: Reemplace el marcador de posición <em>\<name-of-your-api-app></name-of-your-api-app></em> por el nombre de la aplicación web que creó anteriormente en este laboratorio. Recientemente ha consultado el nombre de esta aplicación en los pasos anteriores.</p>
+</blockquote>
+<p>Espere a que se complete la operación de implementación antes de continuar con este laboratorio.</p></li>
+<li class="task-list-item" id="taskIndex49"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex49"><span></span></label>En el <strong>panel de navegación</strong> de Azure Portal, seleccione el vínculo <strong>Grupos de recursos</strong>.</p></li>
+<li class="task-list-item" id="taskIndex50"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex50"><span></span></label>En la hoja <strong>Grupos de recursos</strong>, seleccione el grupo de recursos <strong>ManagedPlatform-lod58035175</strong> que creó anteriormente en este laboratorio.</p></li>
+<li class="task-list-item" id="taskIndex51"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex51"><span></span></label>En la hoja <strong>ManagedPlatform-lod58035175</strong>, seleccione la aplicación web <strong>imgapi58035175</strong> que creó anteriormente en este laboratorio.</p></li>
+<li class="task-list-item" id="taskIndex52"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex52"><span></span></label>En la hoja de <strong>App Service</strong>, seleccione <strong>Examinar</strong>.</p>
+<blockquote>
+  <p><strong>Nota</strong>: El comando <strong>Examinar</strong> realizará una solicitud GET a la raíz del sitio web, que devuelve una notación de objetos JavaScript (JSON). Esta matriz debe contener la dirección URL de la única imagen cargada en la cuenta de almacenamiento.</p>
+</blockquote></li>
+<li class="task-list-item" id="taskIndex53"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex53"><span></span></label>Vuelva a la ventana del explorador que contiene Azure Portal.</p></li>
+<li class="task-list-item" id="taskIndex54"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex54"><span></span></label>Cierre las aplicaciones de Visual&nbsp;Studio Code y Terminal actualmente en ejecución.</p></li>
+</ol>
+<h4 id="revisar">Revisar</h4>
+<p>En este ejercicio, ha creado una aplicación web en Azure y, a continuación, ha implementado la aplicación web de <code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">ASP</span><span class="pun">.</span><span class="pln">NET</span></code> en Web Apps mediante la utilidad de implementación de archivos ZIP de la CLI de Azure y Apache Kudu.</p>
+<h3 id="ejercicionbsp2-compilación-de-una-aplicación-web-front-end-mediante-azure-web-apps">Ejercicio&nbsp;2: Compilación de una aplicación web front-end mediante Azure Web Apps</h3>
+<h4 id="tareanbsp1-creación-de-una-aplicación-web">Tarea&nbsp;1: Creación de una aplicación web</h4>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex55"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex55"><span></span></label>En el panel de <strong>navegación</strong> de Azure Portal, seleccione <strong>Crear un recurso</strong>.</p></li>
+<li class="task-list-item" id="taskIndex56"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex56"><span></span></label>En la hoja <strong>Crear un recurso</strong>, en el cuadro de texto <strong>Buscar Servicios y Marketplace</strong>, escriba <strong>Aplicación web</strong> y, a continuación, seleccione ENTRAR.</p></li>
+<li class="task-list-item" id="taskIndex57"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex57"><span></span></label>En la hoja de resultados de búsqueda de <strong>Marketplace</strong>, seleccione <strong>Aplicación web</strong>.</p></li>
+<li class="task-list-item" id="taskIndex58"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex58"><span></span></label>En la hoja <strong>Aplicación web</strong>, haga clic en <strong>Crear</strong>.</p></li>
+<li class="task-list-item" id="taskIndex59"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex59"><span></span></label>En la hoja <strong>Crear aplicación web</strong>, en la pestaña <strong>Aspectos básicos</strong>, realiza las acciones siguientes y, después, selecciona la pestaña <strong>Supervisión y seguridad</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Configuración</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lista desplegable de <strong>Suscripción</strong></td>
+<td>Conserve los valores predeterminados</td>
+</tr>
+<tr>
+<td>Sección <strong>Grupo de recursos</strong></td>
+<td>Seleccionar <strong>ManagedPlatform-lod58035175</strong></td>
+</tr>
+<tr>
+<td>Cuadro de texto <strong>Nombre</strong>&nbsp;</td>
+<td>Escribir <strong>imgweb58035175</strong></td>
+</tr>
+<tr>
+<td><strong>Protección del nombre de host predeterminado único</strong></td>
+<td><strong>Deshabilitado</strong></td>
+</tr>
+<tr>
+<td>Sección <strong>Publicar</strong></td>
+<td>Seleccione <strong>Código</strong>.</td>
+</tr>
+<tr>
+<td>Lista desplegable de la <strong>pila en tiempo de ejecución</strong></td>
+<td>Seleccionar <strong>.NET&nbsp;8 (LTS)</strong></td>
+</tr>
+<tr>
+<td>Sección <strong>Sistema operativo</strong></td>
+<td>Seleccione <strong>Windows</strong></td>
+</tr>
+<tr>
+<td>Lista desplegable de <strong>Región</strong></td>
+<td>Seleccionar la región <strong>Este de EE.&nbsp;UU.</strong></td>
+</tr>
+<tr>
+<td>Sección <strong>Plan de Windows (Este de EE.&nbsp;UU.)</strong></td>
+<td>Seleccionar <strong>ManagedPlan (S1)</strong></td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<p>En la captura de pantalla siguiente, se muestran los valores configurados en la hoja <strong>Crear aplicación web</strong>.</p>
+<p>
+<img src="https://raw.githubusercontent.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure.es-es/main/Instructions/Labs/./media/l01_create_a_front_end_web_app.png" alt="Hoja Crear aplicación web"></p>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex60"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex60"><span></span></label>En la pestaña <strong>Supervisión y seguridad</strong>, en la sección <strong>Habilitar Application Insights</strong>, selecciona <strong>No</strong> y luego selecciona <strong>Revisar y crear</strong>.</p></li>
+<li class="task-list-item" id="taskIndex61"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex61"><span></span></label>En la pestaña <strong>Revisar y crear</strong>, revise las opciones que seleccionó durante los pasos anteriores.</p></li>
+<li class="task-list-item" id="taskIndex62"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex62"><span></span></label>Seleccione <strong>Crear</strong> para crear la aplicación web mediante la configuración especificada.</p>
+<blockquote>
+  <p><strong>Nota</strong>: Espere a que se complete la tarea de creación antes de continuar con este laboratorio.</p>
+</blockquote></li>
+<li class="task-list-item" id="taskIndex63"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex63"><span></span></label>En la hoja <strong>Información general</strong>, seleccione el botón <strong>Ir al recurso</strong> para ir a la hoja de la aplicación web recién creada.</p></li>
+</ol>
+<h4 id="tareanbsp2-configuración-de-una-aplicación-web">Tarea&nbsp;2: Configuración de una aplicación web</h4>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex64"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex64"><span></span></label>En la hoja <strong>App&nbsp;Service</strong>, en la sección <strong>Configuración</strong>, seleccione el vínculo <strong>Variables de entorno</strong>.</p></li>
+<li class="task-list-item" id="taskIndex65"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex65"><span></span></label>En la sección <strong>Variables de entorno</strong>, realiza las siguientes acciones, selecciona <strong>Aplicar</strong> y luego <strong>Continuar</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Configuración</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pestaña <strong>Configuración de la aplicación</strong></td>
+<td>Haga clic en <strong>Nueva configuración de la aplicación</strong>.</td>
+</tr>
+<tr>
+<td>Cuadro de diálogo emergente <strong>Agregar o editar la configuración de la aplicación</strong></td>
+<td>En el cuadro de texto <strong>Nombre</strong>, escriba <strong>ApiUrl</strong>.</td>
+</tr>
+<tr>
+<td>Cuadro de texto <strong>Valor</strong></td>
+<td>Escriba la dirección URL de la aplicación web que copió anteriormente en este laboratorio. <strong>Nota</strong>: Asegúrese de incluir el protocolo <strong>https://</strong> en la dirección URL que copia en el cuadro de texto <strong>Valor</strong> de esta configuración de la aplicación.</td>
+</tr>
+<tr>
+<td>Casilla <strong>Configuración de la ranura de implementación</strong></td>
+<td>Conserve el valor predeterminado y seleccione <strong>Aceptar</strong>.</td>
+</tr>
+<tr>
+<td>Haz clic en <strong>Aplicar</strong> en el menú superior</td>
+<td>Esto guardará el valor de configuración que acabas de escribir.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+  <p><strong>Nota</strong>: Espere a que se guarde la configuración de la aplicación antes de continuar con este laboratorio.</p>
+</blockquote></li>
+</ol>
+<h4 id="tareanbsp3-implementación-de-una-aplicación-web-de-aspnet-en-web-apps">Tarea&nbsp;3: Implementación de una aplicación web de <code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">ASP</span><span class="pun">.</span><span class="pln">NET</span></code> en Web Apps</h4>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex66"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex66"><span></span></label>En la barra de herramientas, seleccione el icono <strong>Visual&nbsp;Studio Code</strong>.</p></li>
+<li class="task-list-item" id="taskIndex67"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex67"><span></span></label>En el menú <strong>Archivo</strong>, seleccione <strong>Abrir carpeta</strong>.</p></li>
+<li class="task-list-item" id="taskIndex68"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex68"><span></span></label>En la ventana <strong>Explorador de archivos</strong>, vaya a <strong>Allfiles C:\Allfiles\Labs\01\Starter\Web</strong> y, a continuación, seleccione <strong>Seleccionar carpeta</strong>.</p>
+<blockquote>
+  <p><strong>Nota</strong>: Ignore los mensajes para agregar los recursos necesarios para compilar y depurar, así como para ejecutar el comando restore y solucionar las dependencias sin resolver.</p>
+</blockquote></li>
+<li class="task-list-item" id="taskIndex69"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex69"><span></span></label>En el panel &nbsp;<strong>Explorador</strong>&nbsp; de la ventana <strong>Visual&nbsp;Studio Code</strong>, expanda la carpeta &nbsp;<strong>Páginas</strong> y, a continuación, seleccione el archivo <strong>Index.cshtml.cs</strong> para abrir el archivo en el editor.</p></li>
+<li class="task-list-item" id="taskIndex70"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex70"><span></span></label>En el editor, en la clase <strong>IndexModel</strong> de la línea&nbsp;30, observe el método <strong>OnGetAsync</strong> y el código usado para recuperar la lista de imágenes de la API.</p></li>
+<li class="task-list-item" id="taskIndex71"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex71"><span></span></label>En la clase <strong>IndexModel</strong> de la línea&nbsp;41, observe el método <strong>OnPostAsync</strong> y el código usado para transmitir una imagen cargada a la API de back-end.</p></li>
+<li class="task-list-item" id="taskIndex72"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex72"><span></span></label>En la barra de tareas, seleccione el icono <strong>Terminal</strong>.</p></li>
+<li class="task-list-item" id="taskIndex73"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex73"><span></span></label>En el terminal abierto, escriba el siguiente comando y seleccione Entrar para iniciar sesión en la CLI de Azure:</p>
+<pre><div class="codeTitle"><span class="title"></span><span class="buttons"><span class="copy-code-block">Copiar</span></span></div><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">az login</span></code></pre></li>
+<li class="task-list-item" id="taskIndex74"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex74"><span></span></label>En la ventana del explorador <strong>Microsoft&nbsp;Edge</strong>, escriba la dirección de correo electrónico y la contraseña de su cuenta Microsoft y, a continuación, seleccione <strong>Iniciar sesión</strong>.</p></li>
+<li class="task-list-item" id="taskIndex75"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex75"><span></span></label>Vuelva a la ventana de <strong>Terminal</strong> abierta actualmente. Espere a que finalice el proceso de inicio de sesión.</p></li>
+<li class="task-list-item" id="taskIndex76"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex76"><span></span></label>Escriba el siguiente comando y, a continuación, seleccione ENTRAR para enumerar todas las aplicaciones del grupo de recursos <strong>ManagedPlatform-lod58035175</strong>:</p>
+<pre><div class="codeTitle"><span class="title"></span><span class="buttons"><span class="copy-code-block">Copiar</span></span></div><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">az webapp list </span><span class="pun">--</span><span class="pln">resource</span><span class="pun">-</span><span class="kwd">group</span><span class="pln"> </span><span class="typ">ManagedPlatform</span><span class="pun">-</span><span class="pln">lod58035175</span></code></pre></li>
+<li class="task-list-item" id="taskIndex77"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex77"><span></span></label>Escriba el siguiente comando y, a continuación, seleccione ENTRAR para buscar las aplicaciones que tienen el prefijo <strong>imgweb*</strong> :</p>
+<pre><div class="codeTitle"><span class="title"></span><span class="buttons"><span class="copy-code-block">Copiar</span></span></div><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">az webapp list </span><span class="pun">--</span><span class="pln">resource</span><span class="pun">-</span><span class="kwd">group</span><span class="pln"> </span><span class="typ">ManagedPlatform</span><span class="pun">-</span><span class="pln">lod58035175 </span><span class="pun">--</span><span class="pln">query </span><span class="str">"[?starts_with(name, 'imgweb')]"</span></code></pre></li>
+<li class="task-list-item" id="taskIndex78"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex78"><span></span></label>Escriba el siguiente comando y, a continuación, seleccione ENTRAR para representar solo el nombre de la aplicación única que tiene el prefijo <strong>imgweb*</strong> :</p>
+<pre><div class="codeTitle"><span class="title"></span><span class="buttons"><span class="copy-code-block">Copiar</span></span></div><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">az webapp list </span><span class="pun">--</span><span class="pln">resource</span><span class="pun">-</span><span class="kwd">group</span><span class="pln"> </span><span class="typ">ManagedPlatform</span><span class="pun">-</span><span class="pln">lod58035175 </span><span class="pun">--</span><span class="pln">query </span><span class="str">"[?starts_with(name, 'imgweb')].{Name:name}"</span><span class="pln"> </span><span class="pun">--</span><span class="pln">output tsv</span></code></pre></li>
+<li class="task-list-item" id="taskIndex79"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex79"><span></span></label>Escriba el siguiente comando y, a continuación, seleccione ENTRAR para cambiar el directorio actual al directorio <strong>Allfiles C:\Allfiles\Labs\01\Starter\Web</strong> que contiene los archivos de laboratorio:</p>
+<pre><div class="codeTitle"><span class="title"></span><span class="buttons"><span class="copy-code-block">Copiar</span></span></div><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">cd C</span><span class="pun">:</span><span class="pln">\Allfiles\Labs\0</span><span class="lit">1</span><span class="pln">\Starter\Web\</span></code></pre></li>
+<li class="task-list-item" id="taskIndex80"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex80"><span></span></label>Escriba el siguiente comando y, a continuación, seleccione ENTRAR para implementar el archivo <strong>web.zip</strong> en la aplicación web que creó anteriormente en este laboratorio:</p>
+<pre><div class="codeTitle"><span class="title"></span><span class="buttons"><span class="copy-code-block">Copiar</span></span></div><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">az webapp deployment source config</span><span class="pun">-</span><span class="pln">zip </span><span class="pun">--</span><span class="pln">resource</span><span class="pun">-</span><span class="kwd">group</span><span class="pln"> </span><span class="typ">ManagedPlatform</span><span class="pun">-</span><span class="pln">lod58035175 </span><span class="pun">--</span><span class="pln">src web</span><span class="pun">.</span><span class="pln">zip </span><span class="pun">--</span><span class="pln">name </span><span class="pun">&lt;</span><span class="pln">name</span><span class="pun">-</span><span class="kwd">of</span><span class="pun">-</span><span class="pln">your</span><span class="pun">-</span><span class="pln">web</span><span class="pun">-</span><span class="pln">app</span><span class="pun">&gt;</span></code></pre>
+<blockquote>
+  <p><strong>Nota</strong>: Reemplace el marcador de posición <em>\<name-of-your-web-app></name-of-your-web-app></em> por el nombre de la aplicación web que creó anteriormente en este laboratorio. Recientemente ha consultado el nombre de esta aplicación en los pasos anteriores.</p>
+</blockquote>
+<p>Espere a que se complete la operación de implementación antes de continuar con este laboratorio.</p></li>
+<li class="task-list-item" id="taskIndex81"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex81"><span></span></label>En el panel de <strong>navegación</strong> de Azure Portal, seleccione <strong>Grupos de recursos</strong>.</p></li>
+<li class="task-list-item" id="taskIndex82"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex82"><span></span></label>En la hoja <strong>Grupos de recursos</strong>, seleccione el grupo de recursos <strong>ManagedPlatform-lod58035175</strong> que creó anteriormente en este laboratorio.</p></li>
+<li class="task-list-item" id="taskIndex83"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex83"><span></span></label>En la hoja <strong>ManagedPlatform-lod58035175</strong>, seleccione la aplicación web <strong>imgweb58035175</strong> que creó anteriormente en este laboratorio.</p></li>
+<li class="task-list-item" id="taskIndex84"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex84"><span></span></label>En la hoja de <strong>App Service</strong>, seleccione <strong>Examinar</strong>.</p></li>
+<li class="task-list-item" id="taskIndex85"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex85"><span></span></label>Observe la lista de imágenes de la galería. La galería debe enumerar una sola imagen que se cargó en Storage anteriormente en el laboratorio.</p></li>
+<li class="task-list-item" id="taskIndex86"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex86"><span></span></label>En la página web <strong>Galería de fotos de Contoso</strong>, en la sección <strong>Cargar una nueva imagen</strong>, realice las siguientes acciones:</p>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex87"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex87"><span></span></label>Haga clic en <strong>Examinar</strong>.</p></li>
+<li class="task-list-item" id="taskIndex88"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex88"><span></span></label>En la ventana <strong>Explorador de archivos</strong>, ve a <strong>Allfiles C:\Allfiles\Labs\01\Starter\Images</strong>, selecciona el archivo <strong>banhmi.jpg</strong> y luego selecciona <strong>Abrir</strong>.</p></li>
+<li class="task-list-item" id="taskIndex89"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex89"><span></span></label>Seleccione <strong>Cargar</strong>.</p></li></ol></li>
+<li class="task-list-item" id="taskIndex90"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex90"><span></span></label>Observe que la lista de imágenes de la galería se ha actualizado con la nueva imagen.</p>
+<blockquote>
+  <p><strong>Nota</strong>: En algunos casos poco frecuentes, es posible que tenga que actualizar la ventana del explorador para recuperar la nueva imagen.</p>
+</blockquote></li>
+<li class="task-list-item" id="taskIndex91"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex91"><span></span></label>Vuelva a la ventana del explorador que contiene Azure Portal.</p></li>
+<li class="task-list-item" id="taskIndex92"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex92"><span></span></label>Cierre las aplicaciones de Visual&nbsp;Studio Code y Terminal actualmente en ejecución.</p></li>
+</ol>
+<h4 id="revisar-1">Revisar</h4>
+<p>En este ejercicio, ha creado una aplicación web de Azure e implementado el código de una aplicación web existente en el recurso en la nube.</p></include>
+<hr>
+<include src="https://raw.githubusercontent.com/LODSContent/All-MOC/master/MOC/es/CongratulationsEnd.md" data-name=""><h3 id="¡enhorabuena">¡Enhorabuena!</h3>
+<p>Ha completado correctamente este laboratorio. Para marcarlo como <strong>Completado</strong>, haga clic en <strong>Finalizar</strong>.</p></include></div></div>
+                </div>
+                <div class="instructions-footer primary-color-low-opacity-border">
+                    <div id="instructionsNavigation" class="instructions-navigation" role="navigation" aria-label="Anterior/Siguiente">
+                        <button id="previous" class="previous-button icon noselect" title="Anterior" tabindex="0">Anterior</button>
+                        <button id="next" class="next-button icon noselect" title="Finalizar">Finalizar</button>
+                    </div>
+                    <div class="progress-and-timer-wrapper">
+                        <div id="taskProgressBar" class="lab-progress-bar primary-color-low-opacity-background" tabindex="0" style="" title="93/93 (100%) Tareas completadas">
+                            <div id="taskProgress" class="lab-progress-fill primary-color-background" style="width: 100%;"></div>
+                        </div>
+                        <div id="timerWrapper" class="timer-wrapper">
+                            <span id="timer" class="timer primary-color" tabindex="0">21 Minutos restantes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="resourcesTab" class="tab  resources">
+                <div class="tab-content">
+                    <div class="zoomable">
+                        <div id="cloudCredentials"><div class="cloudCredential"><h2>Portal de Azure</h2><table class="credentials fields"><tbody><tr><th scope="row" class="fieldName">URL</th><td><a class="portalLink home icon-link special-action-link" href="https://portal.azure.com/#home">https://portal.azure.com/#home</a></td></tr><tr><th scope="row" class="fieldName">Suscripción</th><td><span class="copyable" title="Copiar al portapapeles" tabindex="0" role="button" aria-description="Portal de Azure Copiar al portapapeles Suscripción">813202b7-9c14-42b6-8614-7206e3317c62</span></td></tr><tr><th scope="row" class="fieldName">Nombre del usuario</th><td><span class="copyable" title="Copiar al portapapeles" tabindex="0" role="button" aria-description="Portal de Azure Copiar al portapapeles Nombre del usuario">LabUser-58035175@cloudslice.onmicrosoft.com</span></td></tr><tr><th scope="row" class="fieldName">Contraseña</th><td><span class="copyable" title="Copiar al portapapeles" tabindex="0" role="button" aria-description="Portal de Azure Copiar al portapapeles Contraseña">DCe30@c!eDn3</span></td></tr><tr><th scope="row" class="fieldName"><abbr title="Temporary Access Pass">TAP</abbr></th><td><span class="copyable" title="Copiar al portapapeles" tabindex="0" role="button" aria-description="Portal de Azure Copiar al portapapeles TAP">qgY=#M9J</span></td></tr></tbody></table></div></div>
+                        <div id="cloudResources"><div class="cloudResourceGroup"><h2>Grupo de recursos<div class="description">ManagedPlatform-lod58035175</div></h2></div></div>
+                        <div id="resourcesExtensions"></div>
+                        <div id="containers"></div>
+                        <div id="externalResources"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="help-menu" class="modal-menu page-background-color" role="dialog" aria-modal="true" aria-labelledby="help-menu-title">
+                <div class="modal-menu-title-bar primary-color-background">
+                    <h2 id="help-menu-title" class="modal-menu-title">Ayuda</h2>
+                    <span><a class="close-modal-menu-button" tabindex="0" role="button" aria-label="Cerrar" title="Cerrar"></a></span>
+                </div>
+                <div class="modal-menu-content">
+                    <div class="support-information accent-background">
+                        <h3 class="title">
+                            Información de soporte
+                        </h3>
+                        <table class="fields">
+                            <tbody><tr>
+                                <th scope="row" class="fieldName">IDENTIFICACIÓN</th>
+                                <td>58035175</td>
+                            </tr>
+                                <tr>
+                                    <th scope="row" class="fieldName">Anfitrión</th>
+                                    <td>ASH-HV88</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="fieldName">Centro de datos</th>
+                                    <td>East US</td>
+                                </tr>
+                        </tbody></table>
+                    </div>
+
+                    <div id="helpExtensions"></div>
+
+                        <h3>Preguntas Frecuentes</h3>
+                        <a href="https://docs.skillable.com/docs/student-faq" target="_blank" class="external-link icon-link" aria-label="Preguntas frecuentes sobre la interfaz de laboratorio. (opens a new window)">Preguntas frecuentes sobre la interfaz de laboratorio.</a>
+
+                    <h3>Otras opciones de ayuda</h3>
+
+                            <div class="link-list-item"><a href="https://esi.learnondemand.net/Home/Contact" target="_blank" class="support-link icon-link" aria-label="Envíe una solicitud de soporte (opens a new window)">Envíe una solicitud de soporte</a></div>
+
+
+
+                        <div class="skillable-branding-block">
+                            Powered by <a href="https://skillable.com/solutions" target="_blank" aria-label="Skillable (opens a new window)">Skillable</a>
+                            <span class="skillable-links-separator">•</span>
+                            <a target="_blank" href="https://www.g2.com/contributor/learnondemand-vs?secure%5Bpage_id%5D=Learnondemand-vs&amp;secure%5Brewards%5D=true&amp;secure%5Btoken%5D=839b2cb7a5a16a9e17bef29619706fee2de82770b3d2a6af507fee7a5ee54c7a" aria-label="Review Us (opens a new window)">Review Us</a>
+                        </div>
+                </div>
+            </div>
+            <div id="notifications-menu" class="modal-menu page-background-color" role="dialog" aria-modal="true" aria-labelledby="notifications-menu-title">
+                <div class="modal-menu-title-bar primary-color-background">
+                    <h2 id="notifications-menu-title" class="modal-menu-title">Notificaciones</h2>
+                    <span><a class="close-modal-menu-button" tabindex="0" role="button" aria-label="Cerrar" title="Cerrar"></a></span>
+                </div>
+                <div class="modal-menu-content">
+
+                </div>
+            </div>
+            <div id="settings-menu" class="modal-menu page-background-color" role="dialog" aria-modal="true" aria-labelledby="settings-menu-title">
+                <div class="modal-menu-title-bar primary-color-background">
+                    <h2 id="settings-menu-title" class="modal-menu-title">Configuración</h2>
+                    <span><a class="close-modal-menu-button" tabindex="0" role="button" aria-label="Cerrar" title="Cerrar"></a></span>
+                </div>
+                <div class="modal-menu-content">
+
+
+
+                    <h3 class="settings-heading primary-color">Tamaño del texto</h3>
+
+                    <div class="text-size-choice"><label><input type="radio" name="text-size" checked="" value="100"><span class="checkbox"></span>Estándar</label></div>
+                    <div id="text-size-choice-large" class="text-size-choice"><label><input type="radio" name="text-size" value="150"><span class="checkbox"></span>Texto grande</label></div>
+                    <div id="text-size-choice-extra-large" class="text-size-choice"><label><input type="radio" name="text-size" value="200"><span class="checkbox"></span>Texto extra grande</label></div>
+
+                    <hr>
+
+                        <h3 class="settings-heading primary-color"><label for="theme">Modo de color</label></h3>
+                        <div>
+                            <select id="theme">
+                                    <option value="5" data-name="green" data-style-sheet-url="/theme/styles-v2?themeId=0&amp;mode=light" selected="selected">Luz</option>
+                                    <option value="20" data-name="dark" data-style-sheet-url="/theme/styles-v2?themeId=0&amp;mode=dark">Oscuro</option>
+                                    <option value="4" data-name="gray" data-style-sheet-url="/theme/styles-v2?themeId=0&amp;mode=highcontrast">Alto contraste</option>
+                            </select>
+                        </div>
+                        <hr>
+
+                        <h3 class="settings-heading primary-color">Acciones</h3>
+                        <div id="mainMenuExtensions"></div>
+
+                </div>
+            </div>
+        </div>
+        <div id="notificationContainer" role="region" aria-label="Notificaciones"></div>
+    </div>
+
+    <div id="fullScreenMessage" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="fullScreenMessageTitle" aria-describedby="fullScreenMessageText" class="withLoadingImage">
+        <div id="fullScreenMessageMask"></div>
+        <div id="fullScreenMessageIcon"></div>
+        <div id="fullScreenMessageCenter" class="baseColor">
+            <div id="fullScreenMessageTextWrapper">
+                <span id="fullScreenMessageLoadingIcon" class="loadingAnimation-large"></span>
+                <div id="fullScreenMessageTitle" role="heading" aria-level="1" tabindex="0">Cargando el contenido de su laboratorio</div>
+                <div id="fullScreenMessageText" role="status"></div>
+                <div id="fullScreenMessageButtonWrapper" style="display: none;">
+                    <span id="fullScreenMessageButtons"></span>
+                    <input type="button" id="closeWindow" value="Cerrar ventana">
+                </div>
+                <div id="fullScreenProgressWrapper" style="display: none;">
+                    <div id="fullScreenProgressText"></div>
+                    <div id="fullScreenProgressBar" class="primary-color-low-opacity-background">
+                        <div id="fullScreenProgressFill" class="primary-color-background"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="examResultDetails" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="ExamResultDetailsTitle">
+        <div id="examResultDetailsHeader"></div>
+        <div id="examResultDetailsCenter" class="baseColor">
+            <div id="examResultDetailsWrapper">
+                <div id="examResultDetailsTitle"></div>
+                <div id="examResultDetailsText"></div>
+                <div id="examResultDetailsButtonWrapper">
+                    <span id="examResultDetailsButtons"></span>
+                    <input type="button" id="closeWindow" value="Cerrar ventana">
+                </div>
+                <div id="exResultDetailsProgressWrapper" style="display: none;">
+                    <div id="examResultDetailsProgressText"></div>
+                    <div id="examResultDetailsProgressBar">
+                        <div id="examResultDetailsProgressFill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <textarea id="copyInput" style="position: absolute; left:-10000px; top:-10000px; display:none;"></textarea>
+
+    <script>
+    var model = {
+        id: 58035175,
+        key: "cce12a17-42d6-4de5-88ef-624cdece9e2d",
+        labProfileId: "160379",
+        instructionsSetId: "254927",
+        layoutVersion: 2,
+        isPreview: false,
+        isThemePreview: false,
+previewKey: null,        helpTabLabel: "Ayuda",
+        monitor: false,
+        takeControl: false,
+        allowUserTransferSaves: false,
+        userId: "3813183",
+        userFullName: "Erik Roky",
+        publishKey: "pub-c-4b0a6a73-e675-4561-b40f-cee58350bb9f",
+        subscribeKey: "sub-c-9c6a8086-0758-11eb-8c73-de77696b0464"
+    };
+
+    </script>
+
+
+    <script>
+      (function(h,o,u,n,d) {
+        h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
+        d=o.createElement(u);d.async=1;d.src=n
+        n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
+        })(window,document,'script','https://www.datadoghq-browser-agent.com/us3/v6/datadog-logs.js','DD_LOGS')
+      window.DD_LOGS.onReady(function() {
+          window.DD_LOGS.init({
+            clientToken: 'pub95df9c2772f25cae094492ee095d1bca',
+            site: 'us3.datadoghq.com',
+            env: 'prod',
+            service: 'lab-client-frontend',
+            forwardErrorsToLogs: true,
+            telemetrySampleRate: 100,
+            trackSessionAcrossSubdomains: true,
+            forwardConsoleLogs: ['error', 'warn'],
+          })
+        })
+    </script>
+
+
+<script>
+    let iFrameDetectorModel = {
+        requireIFrame: false
+    };
+
+    function isInIFrame() {
+        return (window === window.parent) ? false : true;
+    }
+
+    $(function () {
+        if (iFrameDetectorModel.requireIFrame && !isInIFrame()) {
+            window.location.href = "/AccessDenied";
+        };
+    });
+
+</script>
+
+
+
+<div id="buffer-extension-hover-container" style="font-family: Roboto, sans-serif; display: none; position: absolute; z-index: 8675309; cursor: pointer; width: 67px; top: 1306.56px; left: 1820px; opacity: 0.6;"><div id="buffer-extension-button-hover-container" style="position: relative; z-index: 8675309; width: 67px; height: 24px;"><span id="buffer-extension-hover-button" style="width: 67px; height: 24px; background-image: url(&quot;chrome-extension://noojglkidnpfjbincgijbaiedldjfbhh/buffer-hover-button.svg&quot;); background-size: 67px 24px; cursor: pointer; opacity: 0.9; display: block; position: relative; z-index: 8675309;"></span><div id="buffer-extension-button-menu" style="position: relative; z-index: 8675308; width: 140px; height: 94px; display: none; bottom: 94px; right: 75px;"><div style="font-size: 14px; width: 140px; display: block; cursor: pointer; padding: 0px 4px; color: rgb(61, 61, 61); line-height: 28px; background-color: rgba(255, 255, 255, 0.8); border-top-left-radius: 4px; border-top-right-radius: 4px; height: 4px;"></div><div id="buffer-extension-create" class="buffer-extension-hover-button" style="font-size: 14px; width: 140px; height: 28px; display: block; cursor: pointer; padding: 0px 4px; color: rgb(61, 61, 61); line-height: 28px;"><span>Create Post</span></div><div id="buffer-extension-save" class="buffer-extension-hover-button" style="font-size: 14px; width: 140px; height: 28px; display: block; cursor: pointer; padding: 0px 4px; color: rgb(61, 61, 61); line-height: 28px;"><span>Save Idea</span></div><div style="font-size: 14px; width: 140px; display: block; cursor: pointer; padding: 0px 4px; color: rgb(61, 61, 61); line-height: 28px; background-color: rgba(255, 255, 255, 0.8); border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; height: 4px;"></div><style>.buffer-extension-hover-button { background-color:rgba(255, 255, 255, 0.8); } .buffer-extension-hover-button span { display:block; padding: 0 4px; border-radius: 4px 4px 4px 4px; -webkit-border-radius: 4px 4px 4px 4px; -moz-border-radius: 4px 4px 4px 4px; } .buffer-extension-hover-button:hover span { background-color:#F5F5F5; }</style></div></div></div></body></html>
